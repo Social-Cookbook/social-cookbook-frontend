@@ -46,6 +46,15 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+          <a
+            href="https://github.com/Social-Cookbook/social-cookbook-frontend"
+            className={styles.card}
+          >
+            <h3>Frontend Repo &rarr;</h3>
+            <p>
+              Visit the frontend repository to make cool changes to this page :D
+            </p>
+          </a>
         </div>
       </main>
 
