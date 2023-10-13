@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <div>
-			<h1>Display API Data Below</h1>
+			<h1 className="font-bold text-orange-500">Display API Data Below</h1>
 			<button onClick={handleClick}>
 				Display New Cat Fact
 			</button>
