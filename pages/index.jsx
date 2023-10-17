@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Post } from "../components/post";
 
 export default function Home() {
 	const [data, setData] = useState('');
@@ -11,11 +12,14 @@ export default function Home() {
 
   return (
     <div>
-			<h1 className="font-bold text-orange-500">Display API Data Below</h1>
-			<button onClick={handleClick}>
-				Display New Cat Fact
-			</button>
-			<p>{data}</p>
-		</div>
+		<h1 className="font-bold text-orange-500">Display API Data Below</h1>
+		<button onClick={handleClick}>
+			Display New Cat Fact
+		</button>
+		<p>{data}</p>
+		<Post></Post>
+		<Post></Post>
+		
+	</div>
   );
 }
