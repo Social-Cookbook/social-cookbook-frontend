@@ -1,16 +1,61 @@
-export function Post() {
+import { useState } from "react";
+
+export function Post({recipe}) {
+
+    const [index, setIndex] = useState(0);
+    let disableNext = false;
+    let disablePrev = false;
+    if (index <= 0) {
+        disablePrev = true;
+    }
+    if (index >= recipe.photoURLs.length - 1) {
+        disableNext = true;
+    }
+
+
+    const onClickPrevious = () => {
+        if (index > 0) {
+            setIndex(index - 1);
+        }
+    }
+
+    const onClickNext = () => {
+        if (index < recipe.photoURLs.length - 1) {
+            setIndex(index + 1);
+        }
+    }
+
     return (
         <div>
             <div id="post" className="flex flex-col justify-start m-5 ml-10">
-			    <div id="user" className="flex flex-row items-center">
+			    <div id="user" className="flex flex-row items-center ml-7">
 				    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12ml-3">
   				    	<path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
             	    </svg>
 				    <p className="ml-2">Username</p>
 			    </div>
-			    <div id="recipe" className="container flex flex-row items-stretch justify-items-stretch mt-3">
-				    <div className="basis-1/3">
-				    	<img src="pasta-salad.jpg" className="aspect-square rounded-xl"></img>
+			    <div id="recipe" className="flex flex-row items-stretch justify-items-stretch mt-3">
+				    <div className="basis-1/3 ml-7 mr-7">
+                        <div className="relative">
+                            {/* use aspect-square to force the picture to be a square or we should consider creating our own ratio based on the size we want for the pictures. */}
+                            <img src={recipe.photoURLs[index]} className="rounded-xl"></img>
+                            <div className="absolute top-1/2 left-full">
+                                <button id="next-button" onClick={onClickNext} disabled={disableNext} className="disabled:opacity-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-9 h-9">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div className="absolute top-1/2 right-full">
+                                <button id="prev-button" onClick={onClickPrevious} disabled={disablePrev} className="disabled:opacity-50">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-9 h-9">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+				    	
+
 				    	<div id="interact-icons" className="mt-3 flex flex-row justify-center">
 					    	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
   						    	<path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
@@ -26,14 +71,14 @@ export function Post() {
 						    </svg>
 					    </div>
 				    </div>
-				    <div id="title-block" className="w-1/3 ml-3">
-					    <h1 className="font-bold ml-3 text-2xl">Pasta Salad</h1>
-					    <p className="p-3">A lot of text will go here with a description of the dish. hardcoding just to figure out the css for the post. A lot of text will go here with a description of the dish. hardcoding just to figure out the css for the post.</p>
+				    <div id="title-block" className="w-1/4 ml-3">
+					    <h1 className="font-bold ml-3 text-2xl">{recipe.title}</h1>
+					    <p className="p-3">{recipe.description}</p>
 					    <div id="stats-row-1 self-end" className="flex flex-row">
 						    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 ml-3">
   						    	<path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" />
 						    </svg>
-						    <p className="ml-1">00.00</p>
+						    <p className="ml-1">{recipe.totalPrice}</p>
 						    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 ml-8">
   							    <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
 						    </svg>
@@ -51,19 +96,20 @@ export function Post() {
 						    <p className="ml-1">600 calories</p>
 					    </div>
 				    </div>
-				    <div id="ingredients" className="ml-6 w-1/3">
+				    <div id="ingredients" className="ml-6 w-1/6">
 					    <p className="font-bold text-lg">Ingredients</p>
 					    <ul className="list-disc mt-3 ml-8">
-						    <li>Pasta</li>
-						    <li>Tomatoes (1 whole tomato)</li>
+                            {recipe.ingredients.map((ingredient, index) => (
+                                <li key={index}>{ingredient}</li>
+                            ))}
 					    </ul>
 				    </div>
-				    <div id="steps" className="ml-12">
+				    <div id="steps" className="ml-12 w-1/4">
 				    	<p className="font-bold text-lg">Steps</p>
 					    <ol className="list-decimal mt-3 ml-10">
-					    	<li>Combine the pasta and tomatoes. typing a really long step to see how it behaves</li>
-					    	<li>Add the dressing</li>
-					    	<li>Mix until homogeneous</li>
+                            {recipe.steps.map((step, index) => (
+                                <li key={index}>{step}</li>
+                            ))}
 					    </ol>
 				    </div>
 			    </div>

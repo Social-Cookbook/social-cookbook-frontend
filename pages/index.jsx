@@ -1,25 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Post } from "../components/post";
 
 export default function Home() {
-	const [data, setData] = useState('');
+	const [posts, setPosts] = useState([]);
 
-	const handleClick = async () => {
-		const resp = await fetch("https://catfact.ninja/fact");
+	const fetchPosts = async () => {
+		const resp = await fetch("http://localhost:3000/api/recipe-posts");
 		const data = await resp.json();
-		setData(data.fact);
+		setPosts(data.posts);
 	}
+
+	useEffect(() => {
+		fetchPosts();
+	});
+	
 
   return (
     <div>
-		<h1 className="font-bold text-orange-500">Display API Data Below</h1>
-		<button onClick={handleClick}>
-			Display New Cat Fact
-		</button>
-		<p>{data}</p>
-		<Post></Post>
-		<Post></Post>
-		
+		<ul>
+			{posts.map((post, index) => (
+            	<li key={index}><Post recipe={post}></Post></li>
+        	))}
+		</ul>
 	</div>
   );
 }
