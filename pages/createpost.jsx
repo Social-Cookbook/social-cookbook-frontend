@@ -16,7 +16,6 @@ export default function CreatePost() {
         for (let i = 0; i < imageFiles.length; i++) {
             formData.append('images[]', imageFiles[i])
         }
-        // formData.append('images', imageFiles);
         const fileUpload = {
 			method: 'POST',
 			body: formData
