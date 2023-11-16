@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 
 import { Post } from "../components/post";
+import styles from "../styles/PostBoard.module.css";
 
 const PostsPage = () => {
   const [posts, setPosts] = useState([]);
@@ -35,9 +36,11 @@ const PostsPage = () => {
   };
 
   return (
-    <div>
-      <button onClick={Logout}>LOGOUT</button>
-      <ul>
+    <div className={styles.container}>
+      <button className={styles.logoutButton} onClick={Logout}>
+        LOGOUT
+      </button>
+      <ul className={styles.postsList}>
         {posts.map((post, index) => (
           <li key={index}>
             <Post recipe={post} />

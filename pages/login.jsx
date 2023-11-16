@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import styles from "../styles/Auth.module.css"; // Adjust the path to the actual location of your CSS module
 
 const Login = () => {
   const router = useRouter();
@@ -44,7 +45,7 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          router.push("/post");
+          router.push("/post_board");
         }, 1000);
       } else {
         handleError(message);
@@ -59,38 +60,38 @@ const Login = () => {
   };
 
   return (
-    <div className="form_container">
-      <h2>Login Account</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={email}
-            placeholder="Enter your email"
-            onChange={handleOnChange}
-          />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Enter your password"
-            onChange={handleOnChange}
-          />
-        </div>
-        <button type="submit">Submit</button>
-        <span>
-          Don't have an account?{" "}
-          <Link href="/signup">
-            Signup
-          </Link>
-        </span>
-      </form>
-      <ToastContainer />
+    <div className={styles.form_container}>
+      <div className="form_container">
+        <h2>Login Account</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={email}
+              placeholder="Enter your email"
+              onChange={handleOnChange}
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Enter your password"
+              onChange={handleOnChange}
+            />
+          </div>
+          <button type="submit">Submit</button>
+          <br />
+          <span>
+            Don't have an account? <Link href="/signup">Signup</Link>
+          </span>
+        </form>
+        <ToastContainer />
+      </div>
     </div>
   );
 };
