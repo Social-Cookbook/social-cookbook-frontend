@@ -1,44 +1,55 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
-const AuthHome = () => {
-  const navigate = useNavigate();
-  const [cookies, removeCookie] = useCookies([]);
+const Home = () => {
+  const router = useRouter();
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
   const [username, setUsername] = useState("");
+
   useEffect(() => {
-    const verifyCookie = async () => {
+    const verifyUser = async () => {
       if (!cookies.token) {
-        navigate("/login");
+        router.push("/login");
+      } else {
+        try {
+          const { data } = await axios.post(
+            "http://localhost:3000/api/auth", // Your server-side verification endpoint
+            {},
+            { withCredentials: true }
+          );
+          const { status, user } = data;
+          setUsername(user);
+          if (status) {
+            toast(`Hello ${user}`, {
+              position: "top-right",
+            });
+          } else {
+            removeCookie("token");
+            router.push("/login");
+          }
+        } catch (error) {
+          console.error("There was an error verifying the user", error);
+          removeCookie("token");
+          router.push("/login");
+        }
       }
-      const { data } = await axios.post(
-        "http://localhost:3000",
-        {},
-        { withCredentials: true }
-      );
-      const { status, user } = data;
-      setUsername(user);
-      return status
-        ? toast(`Hello ${user}`, {
-            position: "top-right",
-          })
-        : (removeCookie("token"), navigate("/login"));
     };
-    verifyCookie();
-  }, [cookies, navigate, removeCookie]);
+
+    verifyUser();
+  }, [cookies, router, removeCookie]);
+
   const Logout = () => {
     removeCookie("token");
-    navigate("/signup");
+    router.push("/signup");
   };
+
   return (
     <>
       <div className="home_page">
-        <h4>
-          {" "}
-          Welcome <span>{username}</span>
-        </h4>
+        <h4>Welcome <span>{username}</span></h4>
         <button onClick={Logout}>LOGOUT</button>
       </div>
       <ToastContainer />
@@ -46,4 +57,4 @@ const AuthHome = () => {
   );
 };
 
-export default AuthHome;
+export default Home;

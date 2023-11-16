@@ -1,18 +1,20 @@
-// pages/signup.js
+// pages/signup.jsx
 
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
+import Link from "next/link";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
 const Signup = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const [inputValue, setInputValue] = useState({
     email: "",
     password: "",
     username: "",
   });
   const { email, password, username } = inputValue;
+
   const handleOnChange = (e) => {
     const { name, value } = e.target;
     setInputValue({
@@ -25,6 +27,7 @@ const Signup = () => {
     toast.error(err, {
       position: "bottom-left",
     });
+
   const handleSuccess = (msg) =>
     toast.success(msg, {
       position: "bottom-right",
@@ -34,26 +37,23 @@ const Signup = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/signup",
-        {
-          ...inputValue,
-        },
+        "http://localhost:3000/api/auth/signup",
+        inputValue,
         { withCredentials: true }
       );
       const { success, message } = data;
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("/");
+          router.push("/post");
         }, 1000);
       } else {
         handleError(message);
       }
     } catch (error) {
-      console.log(error);
+      handleError(error.message);
     }
     setInputValue({
-      ...inputValue,
       email: "",
       password: "",
       username: "",
@@ -75,7 +75,7 @@ const Signup = () => {
           />
         </div>
         <div>
-          <label htmlFor="email">Username</label>
+          <label htmlFor="username">Username</label>
           <input
             type="text"
             name="username"
@@ -96,7 +96,10 @@ const Signup = () => {
         </div>
         <button type="submit">Submit</button>
         <span>
-          Already have an account? <Link to={"/login"}>Login</Link>
+          Already have an account?{" "}
+          <Link href="/login">
+            Login
+          </Link>
         </span>
       </form>
       <ToastContainer />
