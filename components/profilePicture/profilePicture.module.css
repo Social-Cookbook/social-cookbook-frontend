@@ -1,0 +1,21 @@
+.profile-container {
+  text-align: center;
+}
+
+.profilepicture {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  border: 2px solid white;
+  object-fit: cover;
+}
+
+.user-name {
+  margin-top: 10px;
+  font-size: 1.2em;
+}
+
+.profilepicture:hover {
+  border-color: #e1306c;
+  transition: border-color 0.3s ease-in-out;
+}
