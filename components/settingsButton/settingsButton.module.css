@@ -3,6 +3,7 @@
   border: none;
   cursor: pointer;
   outline: none;
+  margin-left: 20px;
 }
 
 .image {
@@ -11,5 +12,5 @@
 }
 
 .button:hover {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }

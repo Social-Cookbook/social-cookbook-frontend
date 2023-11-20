@@ -4,11 +4,19 @@ import ProfilePicture from "../components/profilePicture/profilePicture";
 import EditProfileButton from "../components/editButton/editProfileButton";
 import SettingsButton from "../components/settingsButton/settingsButton";
 import UserInfo from "../components/userInfo/userInfo";
+import styles from "../styles/user.module.css";
+import PostPreview from "../components/posts/postPreview";
 
 const mockUserData = {
   userName: "John Doe",
   profilePictureUrl:
     "https://www.shutterstock.com/image-photo/cooking-culinary-people-concept-happy-600nw-1929876578.jpg",
+};
+
+const postInfo = {
+  image: "cheesecake.svg",
+  title: "New York Style Cheesecake",
+  description: "Cheesecake is super cool",
 };
 
 export default function User() {
@@ -20,7 +28,6 @@ export default function User() {
   }, []);
 
   const handleEditClick = () => {
-    // Handle button click
     console.log("Edit button clicked");
     setIsEditing(true);
   };
@@ -31,16 +38,30 @@ export default function User() {
 
   return (
     <div>
-      <ProfilePicture {...userData} />
-      {isEditing ? (
-        <div>
-          <p>Edit Profile Form</p>
+      <div className={styles.container}>
+        <ProfilePicture {...userData} />
+        <UserInfo username={mockUserData.userName} />
+        <div className={styles.buttons}>
+          {isEditing ? (
+            <div>
+              <p>Edit Profile Form</p>
+            </div>
+          ) : (
+            <EditProfileButton onClick={handleEditClick} />
+          )}
+          <SettingsButton onClick={handleSettingsClick} />
         </div>
-      ) : (
-        <EditProfileButton onClick={handleEditClick} />
-      )}
-      <SettingsButton onClick={handleSettingsClick} />
-      <UserInfo username={mockUserData.userName}/>
+      </div>
+      <div className={styles.posts}>
+        <PostPreview postInfo={postInfo} />
+        <PostPreview postInfo={postInfo} />
+        <PostPreview postInfo={postInfo} />
+        <PostPreview postInfo={postInfo} />
+        <PostPreview postInfo={postInfo} />
+        <PostPreview postInfo={postInfo} />
+        <PostPreview postInfo={postInfo} />
+        <PostPreview postInfo={postInfo} />
+      </div>
     </div>
   );
 }
