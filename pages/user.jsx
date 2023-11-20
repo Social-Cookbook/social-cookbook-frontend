@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import ProfilePicture from "../components/profilePicture/profilePicture";
 import EditProfileButton from "../components/editButton/editProfileButton";
 import SettingsButton from "../components/settingsButton/settingsButton";
+import UserInfo from "../components/userInfo/userInfo";
 
 const mockUserData = {
   userName: "John Doe",
@@ -39,6 +40,7 @@ export default function User() {
         <EditProfileButton onClick={handleEditClick} />
       )}
       <SettingsButton onClick={handleSettingsClick} />
+      <UserInfo username={mockUserData.userName}/>
     </div>
   );
 }

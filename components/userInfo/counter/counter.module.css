@@ -1,0 +1,24 @@
+.container {
+  text-align: center;
+  margin: 10px;
+  padding: 5px;
+}
+
+.box {
+  text-align: center;
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f7f7f7;
+}
+
+.number {
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.caption {
+  font-size: 24;
+  font-weight: 600;
+}
