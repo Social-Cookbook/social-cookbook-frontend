@@ -26,18 +26,19 @@ export default function CreatePost() {
     }
 
     const callCreatePost = async () => {
-        const result = await callUpload();
-        const titleVal = title.current.value;
+    const result = await callUpload();
+    const titleVal = title.current.value;
 		const descVal = desc.current.value;
 		const stepsArray = steps.current.value.split("/");
 		const ingredientArray = ingredients.current.value.split(", ");
 		const priceVal = price.current.value;
-        const photoURLs = result.urls;
+    const photoURLs = result.urls;
 		
 		const requestOptions = {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ title: titleVal, description: descVal, steps: stepsArray, ingredients: ingredientArray, totalPrice: priceVal, photoURLs: photoURLs})
+			body: JSON.stringify({ title: titleVal, description: descVal, steps: stepsArray, ingredients: ingredientArray, totalPrice: priceVal, photoURLs: photoURLs}),
+			credentials: 'include'
 		};
 		const respPost = await fetch('http://localhost:3000/api/recipe-posts/create', requestOptions);
     }
