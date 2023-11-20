@@ -4,6 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import PostsPage from "./post_board";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
   {
     path: "/create-post",
     element: <NewPost />
+  },
+  {
+    path: "/post_board",
+    element: <PostsPage />
   }
 ]);
 

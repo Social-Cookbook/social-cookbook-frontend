@@ -47,7 +47,7 @@ export default function CreatePost() {
 	};
 
     return (
-        <div className="flex flex-col m-10">
+        <div className="flex flex-col m-5">
 			<h1 className="ml-7 mt-5 font-bold text-3xl">Create a New Post</h1>
 			<form className="flex flex-col" action="onSubmit">
                 <div className="flex flex-row m-5">
@@ -83,7 +83,7 @@ export default function CreatePost() {
                 </div>
 			</form>
 			<div className="flex flex-row mb-10 justify-center">
-				<button className="m-8 p-1 text-lg bg-red-300 rounded-full w-1/6 h-12 justify-self-center" onClick={onCreatePost}>Create Post</button>
+				<button className="mx-8 mb-8 p-1 text-lg bg-sage-200 rounded-full w-1/6 h-12 justify-self-center" onClick={onCreatePost}>Create Post</button>
 			</div>
 		</div>
     );
