@@ -1,3 +1,10 @@
+import { Navbar } from "./navbar"
+
 export default function Layout({ children }) {
-  return <div style={{ width: "100vw" }}>{children}</div>;
+  return (
+    <div>
+        <Navbar></Navbar>
+        <>{children}</>
+    </div>
+  )
 }

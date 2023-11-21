@@ -9,8 +9,6 @@ import styles from "../styles/PostBoard.module.css";
 
 const PostsPage = () => {
   const [posts, setPosts] = useState([]);
-  const router = useRouter();
-  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
   const fetchPosts = async () => {
     try {
@@ -28,18 +26,10 @@ const PostsPage = () => {
 
   useEffect(() => {
     fetchPosts();
-  }, []);
-
-  const Logout = () => {
-    removeCookie("token");
-    router.push("/login");
-  };
+  });
 
   return (
     <div className={styles.container}>
-      <button className={styles.logoutButton} onClick={Logout}>
-        LOGOUT
-      </button>
       <ul className={styles.postsList}>
         {posts.map((post, index) => (
           <li key={index}>

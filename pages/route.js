@@ -1,6 +1,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import PostsPage from "./post_board";
 
 const router = createBrowserRouter([
   {
@@ -9,8 +13,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/create-post",
-    element: <NewPost />,
+    element: <NewPost />
   },
+  {
+    path: "/post_board",
+    element: <PostsPage />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

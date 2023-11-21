@@ -5,7 +5,16 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        sage: {
+          100: '#D3EABC',
+          150: '#91C45D',
+          200: '#75BA31',
+          250: '#66A22B'
+        }
+      }
+    },
   },
   plugins: [],
 };
