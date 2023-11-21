@@ -3,20 +3,21 @@ import styles from "./userInfo.module.css";
 import Counter from "./counter/counter";
 import Username from "./username/username";
 
-const posts = {
-  caption: "Posts",
-  count: -2,
-};
-const followers = {
-  caption: "Followers",
-  count: 69,
-};
-const following = {
-  caption: "Following",
-  count: 5,
-};
+const UserInfo = ({ username, num_posts, num_followers, num_following }) => {
 
-const UserInfo = ({ username }) => {
+  const posts = {
+    caption: "Posts",
+    count: num_posts || 0,
+  };
+  const followers = {
+    caption: "Followers",
+    count: num_followers || 0,
+  };
+  const following = {
+    caption: "Following",
+    count: num_following || 0,
+  };
+
   return (
     <div className={styles.container}>
       <Username username={username} />
