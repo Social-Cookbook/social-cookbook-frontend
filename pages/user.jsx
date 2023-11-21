@@ -7,40 +7,46 @@ import UserInfo from "../components/userInfo/userInfo";
 import styles from "../styles/user.module.css";
 import PostPreview from "../components/posts/postPreview";
 
-const mockUserData = {
-  userName: "John Doe",
-  profilePictureUrl:
-    "https://www.shutterstock.com/image-photo/cooking-culinary-people-concept-happy-600nw-1929876578.jpg",
-};
-
-const postInfo = {
-  image: "cheesecake.svg",
-  title: "New York Style Cheesecake",
-  description: "Cheesecake is super cool",
-};
-
 export default function User() {
+  
+  const userId = '654ace32c936941e29ba7227' // replace this with current user's userId
+
   const [userData, setUserData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
 
+  const fetchUserData = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/api/users/userpage/${userId}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setUserData(data);
+    } catch (error) {
+      console.error("Fetching user information failed:", error);
+    }
+  };
+
   useEffect(() => {
-    setUserData(mockUserData);
-  }, []);
+    fetchUserData();
+  });
 
   const handleEditClick = () => {
     console.log("Edit button clicked");
-    setIsEditing(true);
+    // setIsEditing(true);
   };
 
   const handleSettingsClick = () => {
     console.log("Settings button clicked");
   };
 
+  const posts = userData.posts || []
+
   return (
     <div>
       <div className={styles.container}>
         <ProfilePicture {...userData} />
-        <UserInfo username={mockUserData.userName} />
+        <UserInfo {...userData} />
         <div className={styles.buttons}>
           {isEditing ? (
             <div>
@@ -52,16 +58,13 @@ export default function User() {
           <SettingsButton onClick={handleSettingsClick} />
         </div>
       </div>
-      <div className={styles.posts}>
-        <PostPreview postInfo={postInfo} />
-        <PostPreview postInfo={postInfo} />
-        <PostPreview postInfo={postInfo} />
-        <PostPreview postInfo={postInfo} />
-        <PostPreview postInfo={postInfo} />
-        <PostPreview postInfo={postInfo} />
-        <PostPreview postInfo={postInfo} />
-        <PostPreview postInfo={postInfo} />
-      </div>
+      <ul className={styles.posts}>
+        {posts.map((postInfo, index) => (
+          <li key={index}>
+            <PostPreview postInfo={postInfo} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
