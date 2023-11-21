@@ -8,15 +8,17 @@ import styles from "../styles/user.module.css";
 import PostPreview from "../components/posts/postPreview";
 
 export default function User() {
-  
-  const userId = '654ace32c936941e29ba7227' // replace this with current user's userId
-
   const [userData, setUserData] = useState({});
   const [isEditing, setIsEditing] = useState(false);
 
   const fetchUserData = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/users/userpage/${userId}`);
+			const request = {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				credentials: 'include',
+			};
+      const response = await fetch(`http://localhost:3000/api/users/userpage/`, request);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
@@ -29,7 +31,7 @@ export default function User() {
 
   useEffect(() => {
     fetchUserData();
-  });
+  }, []);
 
   const handleEditClick = () => {
     console.log("Edit button clicked");
