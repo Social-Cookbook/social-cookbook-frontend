@@ -15,7 +15,6 @@ const PostPage = () => {
       }
       try {
         const singleURL = `http://localhost:3000/api/recipe-posts/${postid}`;
-        console.log(singleURL);
         const response = await fetch(singleURL);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
