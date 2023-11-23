@@ -46,7 +46,7 @@ const Signup = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          router.push("/post_board");
+          router.push("/feed");
         }, 1000);
       } else {
         handleError(message);

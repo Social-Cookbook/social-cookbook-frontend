@@ -7,9 +7,8 @@ export default function Layout({ children }) {
 	const router = useRouter();
 
 	useEffect(() => {
-		if (typeof window !== "undefined") {
-			setShowNavBar(window.location.href === 'http://localhost:3001/login' ? false : true);
-		}
+		const { pathname } = router;
+		setShowNavBar(pathname !== '/login' && pathname !== '/signup');
 	}, [router]);
 
   return (
