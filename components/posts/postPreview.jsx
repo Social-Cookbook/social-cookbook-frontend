@@ -1,10 +1,12 @@
 import * as React from "react";
 import styles from "./postPreview.module.css";
+import { useRouter } from "next/router";
 
 export default function PostPreview({ postInfo }) {
-  
+  const router = useRouter();
+
   const onClickHandle = () => {
-    console.log(postInfo.description);
+    router.push("/post?id=" + postInfo._id);
   };
 
   let default_image = "default_post_image.png";

@@ -42,38 +42,92 @@ export function Post({recipe}) {
 		getUsername();
 	}, []);
 
-    return (
-        <div>
-            <div id="post" className="flex flex-col justify-start m-5 ml-10">
-			    <div id="user" className="flex flex-row items-center ml-7">
-					<Link href='/user'>
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-12 h-12ml-3">
-							<path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-						</svg>
-					</Link>
-				    <p className="ml-2" id="username">{username}</p>
-			    </div>
-			    <div id="recipe" className="flex flex-row items-stretch justify-items-stretch mt-3">
-				    <div className="basis-1/3 ml-7 mr-7">
-                        <div className="relative">
-                            {/* use aspect-square to force the picture to be a square or we should consider creating our own ratio based on the size we want for the pictures. */}
-                            <img src={recipe.photoURLs[index]} className="rounded-xl"></img>
-                            <div className="absolute top-1/2 left-full">
-                                <button id="next-button" onClick={onClickNext} disabled={disableNext} className="disabled:opacity-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-9 h-9">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                                    </svg>
-                                </button>
-                            </div>
-                            <div className="absolute top-1/2 right-full">
-                                <button id="prev-button" onClick={onClickPrevious} disabled={disablePrev} className="disabled:opacity-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={3} stroke="currentColor" className="w-9 h-9">
-                                        <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                                    </svg>
-                                </button>
-                            </div>
-                        </div>
-				    	
+  return (
+    <div className="rounded-md shadow-md bg-slate-50 m-10 mx-20">
+      <div
+        id="user"
+        className="flex flex-row items-center bg-slate-300 w-full rounded-t-md p-3 cursor-pointer"
+        onClick={() => {
+          router.push("/user?id=" + recipe.userId);
+        }}
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-12 h-12ml-3"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+          />
+        </svg>
+        <p className="ml-2" id="username">
+          {username}
+        </p>
+      </div>
+      <div id="post" className="flex flex-col justify-start m-5 ml-10 p-5">
+        <div
+          id="recipe"
+          className="flex flex-row items-stretch justify-items-stretch mt-3"
+        >
+          <div className="basis-1/3 ml-7 mr-7">
+            <div className="relative">
+              {/* use aspect-square to force the picture to be a square or we should consider creating our own ratio based on the size we want for the pictures. */}
+              <img
+                src={recipe.photoURLs[index]}
+                className="rounded-xl"
+              ></img>
+              <div className="absolute top-1/2 left-full">
+                <button
+                  id="next-button"
+                  onClick={onClickNext}
+                  disabled={disableNext}
+                  className="disabled:opacity-50"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={3}
+                    stroke="currentColor"
+                    className="w-9 h-9"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    />
+                  </svg>
+                </button>
+              </div>
+              <div className="absolute top-1/2 right-full">
+                <button
+                  id="prev-button"
+                  onClick={onClickPrevious}
+                  disabled={disablePrev}
+                  className="disabled:opacity-50"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={3}
+                    stroke="currentColor"
+                    className="w-9 h-9"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 19.5L8.25 12l7.5-7.5"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
 
 				    	<div id="interact-icons" className="mt-3 flex flex-row justify-center">
 					    	<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
