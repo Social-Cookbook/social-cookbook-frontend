@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import { Post } from "../components/post";
-import styles from "../styles/PostBoard.module.css";
 
 const PostsPage = () => {
   const [posts, setPosts] = useState([]);
@@ -34,15 +33,8 @@ const PostsPage = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <ul className={styles.postsList}>
-        {posts &&
-          posts.map((post, index) => (
-            <li key={index}>
-              <Post recipe={post} />
-            </li>
-          ))}
-      </ul>
+    <div className="p-4">
+      {posts && posts.map((post, index) => <Post key={index} recipe={post} />)}
     </div>
   );
 };
