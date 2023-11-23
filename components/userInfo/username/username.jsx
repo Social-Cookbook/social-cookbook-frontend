@@ -10,11 +10,12 @@ const Username = ({ username }) => {
 
 const styles = {
   container: {
-    textAlign: 'center',
+    textAlign: 'left',
   },
   usernameText: {
     fontSize: '24px',
     fontWeight: 'bold',
+		marginLeft: '1.5rem',
   },
 };
 

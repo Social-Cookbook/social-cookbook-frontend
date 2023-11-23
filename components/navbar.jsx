@@ -13,7 +13,6 @@ export function Navbar() {
 				const verifyUser = async () => {
 					if (typeof window !== "undefined") {
 							if (window.location.pathname == "/login") {
-									console.log("good man");
 									return;
 							}
 					}

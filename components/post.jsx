@@ -86,7 +86,7 @@ export function Post({ recipe }) {
               {/* use aspect-square to force the picture to be a square or we should consider creating our own ratio based on the size we want for the pictures. */}
               <img
                 src={recipe.photoURLs[index]}
-                className="rounded-xl aspect-square"
+                className="rounded-xl"
               ></img>
               <div className="absolute top-1/2 left-full">
                 <button
