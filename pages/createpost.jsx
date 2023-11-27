@@ -9,6 +9,8 @@ export default function CreatePost() {
   const price = useRef(null);
   const hours = useRef(null);
   const mins = useRef(null);
+  const servings = useRef(null);
+  const calories = useRef(null);
 
   const callUpload = async () => {
     const imageFiles = images.current.files;
@@ -35,6 +37,9 @@ export default function CreatePost() {
     const stepsArray = steps.current.value.split("/");
     const ingredientArray = ingredients.current.value.split(", ");
     const priceVal = price.current.value;
+    const servingsVal = servings.current.value;
+    const caloriesVal = calories.current.value + " calories";
+    const cookTimeVal = (parseFloat(hours.current.value) + (parseFloat(mins.current.value) / 60)).toFixed(1) + " hour(s)";
     const photoURLs = result.urls;
 
     const requestOptions = {
@@ -46,6 +51,9 @@ export default function CreatePost() {
         steps: stepsArray,
         ingredients: ingredientArray,
         totalPrice: priceVal,
+        calories: caloriesVal,
+        servings: servingsVal,
+        cookTime: cookTimeVal,
         photoURLs: photoURLs,
       }),
       credentials: "include",
@@ -135,7 +143,6 @@ export default function CreatePost() {
                 ref={hours}
                 id="hours"
                 type="number"
-                disabled
               ></input>
               <p className="ml-2">hour(s)</p>
               <input
@@ -143,7 +150,6 @@ export default function CreatePost() {
                 ref={mins}
                 id="minutes"
                 type="number"
-                disabled
               ></input>
               <p className="ml-2">minute(s)</p>
             </div>
@@ -155,7 +161,7 @@ export default function CreatePost() {
                 className="drop-shadow-md rounded-lg w-1/4 ml-2 px-2 py-1"
                 id="calories"
                 type="number"
-                disabled
+                ref={calories}
               ></input>
               <label for="servings" className="font-semibold ml-12">
                 Servings:
@@ -164,7 +170,7 @@ export default function CreatePost() {
                 className="drop-shadow-md rounded-lg w-20 ml-2 px-2 py-1"
                 id="servings"
                 type="number"
-                disabled
+                ref={servings}
               ></input>
             </div>
           </div>

@@ -4,7 +4,7 @@
   border-radius: 25px;
   height: 330px;
   width: 320px;
-  background-color: #fff4f4;
+  background-color: #f7f7f7;
   align-items: center;
   margin-right: 50px;
   margin-left: 50px;
@@ -13,7 +13,7 @@
 }
 
 .backgroundCard:hover {
-  background-color: #ffdede;
+  background-color: #e7e7e7;
   transform: scale(1.05);
   transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
   cursor: pointer;
