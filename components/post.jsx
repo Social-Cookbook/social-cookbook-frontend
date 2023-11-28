@@ -57,7 +57,7 @@ export function Post({ recipe }) {
         id="user"
         className="flex flex-row items-center bg-slate-300 w-full rounded-t-md p-3 cursor-pointer"
         onClick={() => {
-          router.push("/user?id=" + recipe.userId);
+          router.push("/user?id=" + username);
         }}
       >
         <svg

@@ -56,14 +56,14 @@ export default function User() {
 
   const handleFollowClick = async () => {
     console.log("Followed user");
-    console.log(userId);
+    console.log(userData.user_id);
     try {
       const postData_following = {
-        following: userId,
+        following: userData.user_id,
       };
 
       const postData_follower = {
-        followers: userId,
+        followers: userData.user_id,
       };
 
       const request_following = {
