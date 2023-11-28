@@ -29,7 +29,12 @@ const PostPage = () => {
     fetchPosts();
   }, [postid]);
 
-  return <div>{post && post.photoURLs && <Post recipe={post}></Post>}</div>;
+  return (
+    <div>
+      <div className="w-full h-32"></div>
+      {post && post.photoURLs && <Post recipe={post}></Post>}
+    </div>
+  );
 };
 
 export default PostPage;

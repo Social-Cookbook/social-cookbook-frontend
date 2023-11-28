@@ -4,7 +4,6 @@ import Counter from "./counter/counter";
 import Username from "./username/username";
 
 const UserInfo = ({ username, num_posts, num_followers, num_following }) => {
-
   const posts = {
     caption: "Posts",
     count: num_posts || 0,
@@ -19,7 +18,7 @@ const UserInfo = ({ username, num_posts, num_followers, num_following }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container + " mt-28"}>
       <Username username={username} />
       <div className={styles.counters}>
         <Counter {...posts} />

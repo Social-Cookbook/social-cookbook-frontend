@@ -5,7 +5,7 @@ const ProfilePicture = ({ username, profile_picture }) => {
   let defaultProfilePicture = "default_profile_picture.webp";
 
   return (
-    <div className={styles.profilepicture}>
+    <div className={styles.profilepicture + " mt-28"}>
       <img
         src={profile_picture || defaultProfilePicture}
         alt={`Profile picture of ${username}`}

@@ -52,7 +52,7 @@ export function Post({ recipe }) {
   }, []);
 
   return (
-    <div className="rounded-md shadow-md bg-slate-50 m-10 mx-20">
+    <div className="rounded-md shadow-md bg-slate-50 mb-10 mx-20">
       <div
         id="user"
         className="flex flex-row items-center bg-slate-300 w-full rounded-t-md p-3 cursor-pointer"

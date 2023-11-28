@@ -117,7 +117,7 @@ export default function User() {
           <div className={styles.container}>
             <ProfilePicture {...userData} />
             <UserInfo {...userData} />
-            <div className={styles.buttons}>
+            <div className={styles.buttons + " mt-28"}>
               {!userData.is_current_user ? (
                 <>
                   {userData.follows ? (

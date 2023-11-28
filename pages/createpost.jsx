@@ -93,10 +93,10 @@ export default function CreatePost() {
   };
 
   return (
-    <div className="flex flex-col m-5">
-      <h1 className="ml-7 mt-5 font-bold text-3xl">Create a New Post</h1>
+    <div className="flex flex-col mx-5">
+      <h1 className="ml-7 mt-32 font-bold text-3xl">Create a New Post</h1>
       <form className="flex flex-col" action="onSubmit">
-        <div className="flex flex-row m-5">
+        <div className="flex flex-row mx-5">
           <div className="container flex flex-col p-10">
             <label className="font-semibold" for="title">
               Title

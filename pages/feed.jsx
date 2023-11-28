@@ -34,7 +34,10 @@ const PostsPage = () => {
 
   return (
     <div className="p-4">
-      {posts && posts.map((post, index) => <Post key={index} recipe={post} />)}
+      <div className="mt-32">
+        {posts &&
+          posts.map((post, index) => <Post key={index} recipe={post} />)}
+      </div>
     </div>
   );
 };
