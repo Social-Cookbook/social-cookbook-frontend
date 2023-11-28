@@ -1,5 +1,7 @@
 import { useRef } from "react";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function CreatePost() {
   const title = useRef(null);
@@ -42,7 +44,11 @@ export default function CreatePost() {
     const priceVal = price.current.value;
     const servingsVal = servings.current.value;
     const caloriesVal = calories.current.value + " calories";
-    const cookTimeVal = (parseFloat(hours.current.value) + (parseFloat(mins.current.value) / 60)).toFixed(1) + " hour(s)";
+    const cookTimeVal =
+      (
+        parseFloat(hours.current.value) +
+        parseFloat(mins.current.value) / 60
+      ).toFixed(1) + " hour(s)";
     const photoURLs = result.urls;
 
     const requestOptions = {
@@ -61,13 +67,25 @@ export default function CreatePost() {
       }),
       credentials: "include",
     };
-    const respPost = await fetch(
-      "http://localhost:3000/api/recipe-posts/create",
-      requestOptions
-    );
-    setTimeout(() => {
-      router.push("/user");
-    }, 10);
+
+    if (
+      titleVal == "" ||
+      stepsArray == "" ||
+      ingredientArray == "" ||
+      descVal == ""
+    ) {
+      toast.error("Incomplete Post: Fill in all fields.", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    } else {
+      const respPost = await fetch(
+        "http://localhost:3000/api/recipe-posts/create",
+        requestOptions
+      );
+      setTimeout(() => {
+        router.push("/user");
+      }, 10);
+    }
   };
 
   const onCreatePost = () => {
@@ -190,6 +208,7 @@ export default function CreatePost() {
           Create Post
         </button>
       </div>
+      <ToastContainer />
     </div>
   );
 }
