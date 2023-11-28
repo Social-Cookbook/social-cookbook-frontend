@@ -50,8 +50,33 @@ export default function User() {
     console.log("Settings button clicked");
   };
 
-	const handleFollowClick = () => {
+	const handleFollowClick = async () => {
 		console.log("Followed user");
+		console.log(userId)
+		try {
+			const postData = {
+			  following: userId,
+			};
+		
+			const request = {
+			  method: 'PUT',
+			  headers: {
+				'Content-Type': 'application/json',
+			  },
+			  credentials: 'include',
+			  body: JSON.stringify(postData),
+			};
+		
+			const response = await fetch('http://localhost:3000/api/following/loggedInUser/', request);
+		
+			if (!response.ok) {
+			  throw new Error(`HTTP error! status: ${response.status}`);
+			}
+		
+			// Handle the response as needed, e.g., update UI based on the follow action
+		  } catch (error) {
+			console.error("Following user failed:", error);
+		  }
 	}
 
   const posts = userData.posts || []
