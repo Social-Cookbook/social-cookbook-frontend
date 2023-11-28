@@ -9,7 +9,7 @@ export default function PostPreview({ postInfo }) {
     router.push("/post?id=" + postInfo._id);
   };
 
-  let default_image = "default_post_image.png";
+  let default_image = "default_post_image.avif";
   
   return (
     <div className={styles.backgroundCard} onClick={onClickHandle}>
