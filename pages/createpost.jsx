@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useRouter } from "next/router";
 
 export default function CreatePost() {
   const title = useRef(null);
@@ -11,6 +12,8 @@ export default function CreatePost() {
   const mins = useRef(null);
   const servings = useRef(null);
   const calories = useRef(null);
+
+  const router = useRouter();
 
   const callUpload = async () => {
     const imageFiles = images.current.files;
@@ -62,6 +65,9 @@ export default function CreatePost() {
       "http://localhost:3000/api/recipe-posts/create",
       requestOptions
     );
+    setTimeout(() => {
+      router.push("/user");
+    }, 10);
   };
 
   const onCreatePost = () => {
