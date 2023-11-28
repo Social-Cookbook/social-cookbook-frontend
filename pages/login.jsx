@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import styles from "../styles/Auth.module.css"; // Adjust the path to the actual location of your CSS module
 
 const Login = () => {
@@ -25,12 +26,12 @@ const Login = () => {
 
   const handleError = (err) =>
     toast.error(err, {
-      position: "bottom-left",
+      position: toast.POSITION.BOTTOM_RIGHT,
     });
 
   const handleSuccess = (msg) =>
     toast.success(msg, {
-      position: "bottom-left",
+      position: toast.POSITION.BOTTOM_RIGHT,
     });
 
   const handleSubmit = async (e) => {
@@ -62,9 +63,11 @@ const Login = () => {
   return (
     <div className={styles.form_container}>
       <div className="form_container">
-        <h2>Login Account</h2>
+        <div className="flex flex-row justify-center">
+          <h2 className="">Account Login</h2>
+        </div >
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="flex flex-row justify-center">
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -74,7 +77,7 @@ const Login = () => {
               onChange={handleOnChange}
             />
           </div>
-          <div>
+          <div className="flex flex-row justify-center">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -83,12 +86,17 @@ const Login = () => {
               placeholder="Enter your password"
               onChange={handleOnChange}
             />
+          </div >
+          <div className="flex flex-row justify-center">
+            <button type="submit">Submit</button>
           </div>
-          <button type="submit">Submit</button>
-          <br />
-          <span>
-            Don't have an account? <Link href="/signup">Signup</Link>
-          </span>
+          <div className="flex flex-row justify-center">
+            <br />
+            <span>
+              Don't have an account? <Link href="/signup">Sign up.</Link>
+            </span>
+          </div>
+          
         </form>
         <ToastContainer />
       </div>

@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import styles from "../styles/Auth.module.css"; // Adjust the path to the actual location of your CSS module
 
 const Signup = () => {
@@ -26,12 +27,12 @@ const Signup = () => {
 
   const handleError = (err) =>
     toast.error(err, {
-      position: "bottom-left",
+      position: toast.POSITION.BOTTOM_RIGHT,
     });
 
   const handleSuccess = (msg) =>
     toast.success(msg, {
-      position: "bottom-right",
+      position: toast.POSITION.BOTTOM_RIGHT,
     });
 
   const handleSubmit = async (e) => {
@@ -64,9 +65,11 @@ const Signup = () => {
   return (
     <div className={styles.form_container}>
       <div className="form_container">
-        <h2>Signup Account</h2>
+        <div className="flex flex-row justify-center">
+          <h2>Account Signup</h2>
+        </div>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className="flex flex-row justify-center">
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -76,7 +79,7 @@ const Signup = () => {
               onChange={handleOnChange}
             />
           </div>
-          <div>
+          <div className="flex flex-row justify-center">
             <label htmlFor="username">Username</label>
             <input
               type="text"
@@ -86,7 +89,7 @@ const Signup = () => {
               onChange={handleOnChange}
             />
           </div>
-          <div>
+          <div className="flex flex-row justify-center">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -96,11 +99,15 @@ const Signup = () => {
               onChange={handleOnChange}
             />
           </div>
-          <button type="submit">Submit</button>
-          <br />
-          <span>
-            Already have an account? <Link href="/login">Login</Link>
-          </span>
+          <div className="flex flex-row justify-center">
+            <button type="submit">Submit</button>
+          </div>
+          <div className="flex flex-row justify-center">
+            <br />
+            <span>
+              Already have an account? <Link href="/login">Log in.</Link>
+            </span>
+          </div>
         </form>
         <ToastContainer />
       </div>
