@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function Post({ recipe }) {
   const router = useRouter();
@@ -85,7 +87,7 @@ export function Post({ recipe }) {
             <div className="relative">
               {/* use aspect-square to force the picture to be a square or we should consider creating our own ratio based on the size we want for the pictures. */}
               <img
-                src={recipe.photoURLs[index] || 'default_post_image.avif'}
+                src={recipe.photoURLs[index] || "default_post_image.avif"}
                 className="rounded-xl"
               ></img>
               <div className="absolute top-1/2 left-full">
@@ -160,12 +162,21 @@ export function Post({ recipe }) {
                     d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"
                   />
                 </svg>
-                <label className="ml-2">Like</label>
+                <label className="ml-2 cursor-pointer">Like</label>
               </div>
               <div
                 className="flex flex-row justify-center items-center rounded-md bg-slate-100 hover:bg-slate-200 cursor-pointer p-3 ml-3"
                 onClick={() => {
-                  router.push("/post?id=" + recipe._id);
+                  const origin =
+                    typeof window !== "undefined" && window.location.origin
+                      ? window.location.origin
+                      : "";
+                  toast.success("Post link copied to clipboard", {
+                    position: toast.POSITION.BOTTOM_RIGHT,
+                  });
+                  navigator.clipboard.writeText(
+                    "" + origin + "/post?id=" + recipe._id
+                  );
                 }}
               >
                 <svg
@@ -182,7 +193,7 @@ export function Post({ recipe }) {
                     d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5"
                   />
                 </svg>
-                <label className="ml-2">Share</label>
+                <label className="ml-2 cursor-pointer">Share</label>
               </div>
             </div>
           </div>
@@ -284,6 +295,7 @@ export function Post({ recipe }) {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }
