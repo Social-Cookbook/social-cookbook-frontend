@@ -54,23 +54,42 @@ export default function User() {
 		console.log("Followed user");
 		console.log(userId)
 		try {
-			const postData = {
+			const postData_following = {
 			  following: userId,
 			};
+
+			const postData_follower = {
+				followers: userId,
+			}
 		
-			const request = {
+			const request_following = {
 			  method: 'PUT',
 			  headers: {
 				'Content-Type': 'application/json',
 			  },
 			  credentials: 'include',
-			  body: JSON.stringify(postData),
+			  body: JSON.stringify(postData_following),
 			};
 		
-			const response = await fetch('http://localhost:3000/api/following/loggedInUser/', request);
+			const response_1 = await fetch('http://localhost:3000/api/following/loggedInUser/', request_following);
+
+			if (!response_1.ok) {
+				throw new Error(`HTTP error! status: ${response_1.status}`);
+			  }
+
+			const request_follower = {
+			  method: 'PUT',
+			  headers: {
+				'Content-Type': 'application/json',
+			  },
+			  credentials: 'include',
+			  body: JSON.stringify(postData_follower),
+			};
 		
-			if (!response.ok) {
-			  throw new Error(`HTTP error! status: ${response.status}`);
+			const response_2 = await fetch('http://localhost:3000/api/followers/loggedInUser/', request_follower);
+		
+			if (!response_2.ok) {
+			  throw new Error(`HTTP error! status: ${response_2.status}`);
 			}
 		
 			// Handle the response as needed, e.g., update UI based on the follow action
