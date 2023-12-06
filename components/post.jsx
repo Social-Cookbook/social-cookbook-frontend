@@ -35,12 +35,12 @@ export function Post({ recipe }) {
       headers: { "Content-Type": "application/json" },
     };
     const respPost = await fetch(
-      "http://localhost:3000/api/recipe-posts/" + recipe._id,
+      "" + process.env.NEXT_PUBLIC_API_URL + "recipe-posts/" + recipe._id,
       request
     );
     const postdata = await respPost.json();
     const respUser = await fetch(
-      "http://localhost:3000/api/users/" + postdata.userId,
+      "" + process.env.NEXT_PUBLIC_API_URL + "users/" + postdata.userId,
       request
     );
     const userdata = await respUser.json();

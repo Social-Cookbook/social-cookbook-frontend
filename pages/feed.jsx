@@ -14,7 +14,7 @@ const PostsPage = () => {
           credentials: "include",
         };
         const response = await fetch(
-          "http://localhost:3000/api/recipe-posts/followingposts/",
+          "" + process.env.NEXT_PUBLIC_API_URL + "recipe-posts/followingposts/",
           request
         );
         if (!response.ok) {

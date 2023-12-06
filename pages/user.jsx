@@ -27,7 +27,7 @@ export default function User() {
         };
 
         const response = await fetch(
-          "http://localhost:3000/api/users/userpage/" + userId,
+          "" + process.env.NEXT_PUBLIC_API_URL + "users/userpage/" + userId,
           request
         );
         if (!response.ok) {
@@ -76,7 +76,7 @@ export default function User() {
       };
 
       const response_1 = await fetch(
-        "http://localhost:3000/api/following/loggedInUser/",
+        "" + process.env.NEXT_PUBLIC_API_URL + "following/loggedInUser/",
         request_following
       );
 
@@ -94,7 +94,7 @@ export default function User() {
       };
 
       const response_2 = await fetch(
-        "http://localhost:3000/api/followers/loggedInUser/",
+        "" + process.env.NEXT_PUBLIC_API_URL + "followers/loggedInUser/",
         request_follower
       );
 

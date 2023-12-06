@@ -14,7 +14,7 @@ const PostPage = () => {
         return;
       }
       try {
-        const singleURL = `http://localhost:3000/api/recipe-posts/${postid}`;
+        const singleURL = `${process.env.NEXT_PUBLIC_API_URL}recipe-posts/${postid}`;
         const response = await fetch(singleURL);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

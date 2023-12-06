@@ -28,7 +28,7 @@ export default function CreatePost() {
       body: formData,
     };
     const resp = await fetch(
-      "http://localhost:3000/api/recipe-posts/upload",
+      "" + process.env.NEXT_PUBLIC_API_URL + "recipe-posts/upload",
       fileUpload
     );
     const data = await resp.json();
@@ -79,7 +79,7 @@ export default function CreatePost() {
       });
     } else {
       const respPost = await fetch(
-        "http://localhost:3000/api/recipe-posts/create",
+        "" + process.env.NEXT_PUBLIC_API_URL + "recipe-posts/create",
         requestOptions
       );
       setTimeout(() => {

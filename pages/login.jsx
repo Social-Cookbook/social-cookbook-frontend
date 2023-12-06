@@ -38,7 +38,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/auth/login",
+        "" + process.env.NEXT_PUBLIC_API_URL + "auth/login",
         inputValue,
         { withCredentials: true }
       );

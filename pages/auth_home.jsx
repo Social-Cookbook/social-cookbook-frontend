@@ -16,7 +16,7 @@ const Home = () => {
       } else {
         try {
           const { data } = await axios.post(
-            "http://localhost:3000/api/auth", // Your server-side verification endpoint
+            "" + process.env.NEXT_PUBLIC_API_URL + "auth", // Your server-side verification endpoint
             {},
             { withCredentials: true }
           );

@@ -39,7 +39,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/auth/signup",
+        "" + process.env.NEXT_PUBLIC_API_URL + "auth/signup",
         inputValue,
         { withCredentials: true }
       );
